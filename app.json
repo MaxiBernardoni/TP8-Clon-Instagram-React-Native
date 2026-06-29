@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Instagram",
+    "slug": "tp8-clon-instagram-react-native",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.maxi.instagramclone"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.maxi.instagramclone"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
