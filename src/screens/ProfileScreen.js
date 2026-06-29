@@ -9,14 +9,15 @@ import {
   SafeAreaView,
   ActivityIndicator,
   Dimensions,
+  Platform,
 } from 'react-native';
 import axios from 'axios';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { usuarioActual, leyendas, tiempos, comentariosEjemplo } from '../data/userData';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const ITEM_SIZE = SCREEN_WIDTH / 3;
+const CONTAINER_WIDTH = Platform.OS === 'web' ? 390 : Dimensions.get('window').width;
+const ITEM_SIZE = CONTAINER_WIDTH / 3;
 
 function construirPost(img, i) {
   return {
@@ -131,12 +132,7 @@ export default function ProfileScreen() {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={styles.gridItem}
-      onPress={() =>
-        navigation.navigate('Home', {
-          screen: 'PostDetail',
-          params: { post: item },
-        })
-      }
+      onPress={() => navigation.navigate('PostDetail', { post: item })}
     >
       <Image source={{ uri: item.imagenUrl }} style={styles.gridImage} resizeMode="cover" />
     </TouchableOpacity>

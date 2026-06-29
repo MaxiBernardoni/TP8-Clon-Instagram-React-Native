@@ -5,11 +5,11 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
-  Dimensions,
+  Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const POST_WIDTH = Platform.OS === 'web' ? 390 : '100%';
 
 export default function PostCard({ post, onPress }) {
   const [conLike, setConLike] = useState(false);
@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
     color: '#555',
   },
   postImage: {
-    width: SCREEN_WIDTH,
-    height: SCREEN_WIDTH,
+    width: POST_WIDTH,
+    aspectRatio: 1,
     backgroundColor: '#f0f0f0',
   },
   actions: {

@@ -8,23 +8,22 @@ import PostDetailScreen from '../screens/PostDetailScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+const HomeStack = createNativeStackNavigator();
+const ProfileStack = createNativeStackNavigator();
 
-function HomeStack() {
+function HomeNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
+    <HomeStack.Navigator>
+      <HomeStack.Screen
         name="Feed"
         component={HomeScreen}
         options={{
-          headerTitle: () => (
-            <Text style={styles.logoText}>Instagram</Text>
-          ),
+          headerTitle: () => <Text style={styles.logoText}>Instagram</Text>,
           headerStyle: { backgroundColor: '#fff' },
           headerShadowVisible: true,
         }}
       />
-      <Stack.Screen
+      <HomeStack.Screen
         name="PostDetail"
         component={PostDetailScreen}
         options={{
@@ -34,7 +33,37 @@ function HomeStack() {
           headerTitleStyle: { fontWeight: '600', fontSize: 16 },
         }}
       />
-    </Stack.Navigator>
+    </HomeStack.Navigator>
+  );
+}
+
+function ProfileNavigator() {
+  return (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen
+        name="ProfileMain"
+        component={ProfileScreen}
+        options={{
+          headerTitle: 'meow_lover',
+          headerStyle: { backgroundColor: '#fff' },
+          headerTitleStyle: { fontWeight: '700', fontSize: 16 },
+          headerShadowVisible: true,
+          headerRight: () => (
+            <Ionicons name="add-square-outline" size={24} color="#000" style={{ marginRight: 12 }} />
+          ),
+        }}
+      />
+      <ProfileStack.Screen
+        name="PostDetail"
+        component={PostDetailScreen}
+        options={{
+          title: 'Publicación',
+          headerStyle: { backgroundColor: '#fff' },
+          headerTintColor: '#000',
+          headerTitleStyle: { fontWeight: '600', fontSize: 16 },
+        }}
+      />
+    </ProfileStack.Navigator>
   );
 }
 
@@ -61,21 +90,8 @@ export default function AppNavigator() {
         headerShown: false,
       })}
     >
-      <Tab.Screen name="Home" component={HomeStack} />
-      <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{
-          headerShown: true,
-          headerTitle: () => 'meow_lover',
-          headerStyle: { backgroundColor: '#fff' },
-          headerTitleStyle: { fontWeight: '700', fontSize: 16 },
-          headerShadowVisible: true,
-          headerRight: () => (
-            <Ionicons name="add-square-outline" size={24} color="#000" style={{ marginRight: 12 }} />
-          ),
-        }}
-      />
+      <Tab.Screen name="Home" component={HomeNavigator} />
+      <Tab.Screen name="Profile" component={ProfileNavigator} />
     </Tab.Navigator>
   );
 }
